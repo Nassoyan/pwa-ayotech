@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+@font-face {
+    font-family: "Poppins";
+    src: url("../public/Fonts/Poppins-Regular.ttf");
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1470px;
+    padding: 0 50px;
+    margin: 0 auto;
+    $breakpoint-tablet:768px;
+    @media(max-width:$breakpoint-tablet){
+        padding: 0 15px;
+    }
+  }
+
+  a {
+    list-style: none;
+    text-decoration: none;
+    color: unset;
+  }
+
+  // body > iframe {
+  //   display: none !important;
+  // }
+
+  .layout_footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+
+ 
+
+  
+
+
+

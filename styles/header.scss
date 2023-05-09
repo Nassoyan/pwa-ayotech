@@ -1,0 +1,70 @@
+.header_wrapper {
+    width: 100%;
+    .header_logo_box{
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // width: 100px;
+        // height: 100px;
+        >img {
+            padding-top: 10px;
+            
+            object-fit: cover;
+        }
+    }
+    .header_color {
+        background-color: #a6ffa3;
+    }
+    .container {
+        .header_each_div {
+            padding: 8px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #483d3d;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 18px;
+            gap: 5px;
+        }
+        .wishlist{
+            cursor: pointer;
+        }
+    }
+    .header_belowside {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1470px;
+        padding: 10px 50px 10px 70px;
+        margin: 0 auto;
+        >h1{
+            color: #5320c2;;
+        }
+        .addtocart {
+            position: relative;
+            .addtocart_quantity {
+                background-color: green;
+                width: 75%;
+                height: 28%;
+                border-radius: 10px;
+                position: absolute;
+                top: 0;
+                right: -10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 12px;
+                color: yellow;
+            }
+
+        }
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .visit-our-showroom {
+            display: none !important;
+    }
+}
+

@@ -1,0 +1,26 @@
+.container_description {
+    max-width: 1470px;
+    padding: 50px 50px 0 50px;
+    margin: 0 auto;
+    $breakpoint-tablet:768px;
+    @media(max-width:$breakpoint-tablet){
+        padding: 0 15px;
+    }
+    :nth-child(2) {
+        padding-bottom: 15px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    :nth-child(3) {
+        padding-bottom: 15px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .stunning {
+        color: #29CB74;
+        font-size: 24px;
+        font-weight: bold;
+        padding-bottom: 15px;
+    }
+
+}

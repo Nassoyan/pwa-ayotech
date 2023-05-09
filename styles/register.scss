@@ -1,0 +1,163 @@
+
+.register_wrapper {
+width: 100%;
+display: flex;
+justify-content: center;
+padding-top: 200px;
+background-color: rgb(219, 210, 210);
+height: 100vh;
+position: relative;
+>a {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+.register_container {
+        align-items: center;
+        background-color: transparent;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        width: 343px;
+        height: max-content;
+        background-color: #FFFFFF;
+        padding: 40px;
+        border-radius: 15px;
+    
+              .input_hide_arrows{
+                > input::-webkit-inner-spin-button{
+                  -Webkit-Appearance: none;
+                }
+              }
+        
+        .input_area {
+            width: 100%;
+            
+            .login_form {
+              display: flex;
+              flex-direction: column;
+              gap: 35px;
+    
+              .register_name_surname_container{
+                width: 100%;
+                height: 55px;
+                display: flex;
+                gap: 8px;
+                .reg_name{
+                input {
+                    width: 100%;
+                    height: 100%;
+                    border: 1px solid #B3C7DF;
+                    border-radius: 5px;
+                    padding-left: 20px;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 180%;
+                    outline-style: none;
+                    position: relative;
+                  }
+                }
+              }
+    
+              .login_input_div {
+                width: 100%;
+                height: 55px;
+                position: relative;
+                >span{
+                  cursor: pointer;
+                  position: absolute;
+                  top: 19px;
+                  right: 8px;
+                }
+                input {
+                  width: 100%;
+                  height: 100%;
+                  border: 1px solid #B3C7DF;
+                  border-radius: 5px;
+                  padding-left: 20px;
+                  font-weight: 400;
+                  font-size: 12px;
+                  line-height: 180%;
+                  outline-style: none;
+                  position: relative;
+                }
+              }
+              >button {
+                width: 100%;
+                height: 55px;
+                background: rgb(87, 87, 209);
+                box-shadow: 0px 10px 30px rgba(0, 99, 189, 0.24);
+                border-radius: 5px;
+                border: none;
+                color: #FFFFFF;
+                font-size: 1.2rem;
+                line-height: 180%;
+                cursor: pointer;
+              }
+            }
+          }
+        .forgot-pass-area {
+            margin-top: 24px;
+          .forgot-pass {
+            color: #0063bd;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            height: 18px;
+            line-height: 150%;
+            text-align: center;
+            width: 172px;
+          }
+        }
+        .login-social-area {
+            grid-gap: 7px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 343px;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 700;
+          }
+          
+        .login_header {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 32px;
+                .each_login_button {
+                  width: 50%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  cursor: pointer;
+                  >span {
+                    border-bottom: 2px solid #c9c9c9;
+                    width: 100%;
+                    margin-top: 8px;
+                  }
+                  >button {
+                    width: 100%;
+                    background: #FFFFFF;
+                    border: none;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #5F6D7C;
+                  }
+    
+                  &:hover {
+                    > span {
+                      border-bottom: 2px solid #F18E00;
+                    }
+                  }
+                }
+              }
+    }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

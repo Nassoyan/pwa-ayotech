@@ -1,0 +1,14 @@
+.getCart_each_container {
+    width: 20%;
+    padding: 10px;
+    background-color: grey;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    >span {
+        cursor: pointer;
+    }
+}

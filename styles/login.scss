@@ -1,0 +1,145 @@
+.login_wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(219, 210, 210);
+    
+    .login_back {
+        margin-top: 15px;
+        margin-left: 15px;
+    }
+    .login_container {
+        font-size: 18px;
+        font-family:sans-serif;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 200px;
+        .wilmax_login_container {
+            border-radius: 15px;
+            background-color: rgb(255, 255, 255);
+            padding: 40px;
+            .login_header{
+                display: flex;
+                justify-content: space-evenly;
+                .each_login_button {
+                    cursor: pointer;
+                    width: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    &:hover {
+                        > span {
+                          border-bottom: 2px solid #F18E00;
+                        }
+                      }
+                      >span {
+                        margin-top: 5px;
+                        border-bottom: 2px solid#c9c9c9;
+                        width: 100%;
+                      }
+                }
+            }
+            .input_area{
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                .login_form{
+                    .social_login_container {
+                        display: flex;
+                        justify-content: space-between;
+                        .google{
+                            background-color: yellow;
+                        }
+                        .linkedIn{
+                            background-color: rgb(3, 163, 249);
+                        }
+                        .social_box {
+                            border: 1px solid grey;
+                            padding: 5px;
+                            border-radius: 5px;
+                            width: 45%;
+                            display: flex;
+                            justify-content: center;
+                            cursor: pointer;
+                            &:hover {
+                                background-color: rgb(87, 87, 209);
+                                color: white;
+                            }
+                        }
+                    }
+                    .checkbox-field{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        .checkbox-rememberpassword {
+                            display: flex;
+                            gap: 10px;
+                        }
+                        .changepassword {
+                            padding-left: 23px;
+                            cursor:pointer
+                        }
+                    }
+                    >button{
+                        cursor: pointer;
+                        margin-top: 20px;
+                        width: 100%;
+                        background-color: rgb(87, 87, 209);
+                        color: white;
+                        border-radius: 5px;
+                        border: none;
+                        padding: 10px 0 10px 0;
+                        font-size: 1.2rem;
+                        &:hover {
+                            opacity: 0.98;
+                        }
+                       
+                    }
+                    .login_input_div{
+                        padding: 5px;
+                        position: relative;
+                        >span {
+                            cursor: pointer;
+                            position: absolute;
+                            top: 13px;
+                            right: 8px;
+                        }
+                        >input {
+                            border: 1px solid rgb(219, 219, 219);
+                            border-radius: 5px;
+                            outline: none;
+                            padding: 10px;
+                            width: 250px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+     
+  }
+
+  // .login_input_div:has(input:invalid) {
+  //   color: red;
+  //   animation: shake  0.5s 1s;;
+  // }
+  // @keyframes shake {
+  //   10%, 90% {
+  //     transform: translateX(-10px);
+  //   }
+    
+  //   20%, 80% {
+  //     transform: translateX(10px);
+  //   }
+  
+  //   30%, 50%, 70% {
+  //     transform: translateX(-10px);
+  //   }
+  
+  //   40%, 60% {
+  //     transform: translateX(10px);
+  //   }
+  // }
