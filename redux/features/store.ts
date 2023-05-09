@@ -10,6 +10,7 @@ import brandsReducer from "../slices/brendSlider/brandSlice"
 import addToCartReducer from "../slices/cart/addToCartSlice"
 import getCartReducer from "../slices/cart/getCart"
 import deleteCartReducer from "../slices/cart/deleteCart"
+import menuItemsReducer from "../slices/menuItems/menuItems"
 // import { productApi } from "./product/products-api-alice";
 
 export const store = configureStore({
@@ -23,7 +24,8 @@ export const store = configureStore({
     brands:brandsReducer,
     addToCart:addToCartReducer,
     getCart:getCartReducer,
-    deleteCart:deleteCartReducer
+    deleteCart:deleteCartReducer,
+    menuItems:menuItemsReducer
     // [productApi.reducerPath]: productApi.reducer
   },
   // middleware:(getDefaultMiddleware)=> {

@@ -6,31 +6,57 @@ import bormioliLogo from "../../public/images/logo/download.png";
 import promsizeLogo from "../../public/images/logo/promsize.jpg";
 
 import Link from "next/link";
-import { useAppSelector } from "@/redux/features/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import AddToCartSVG from "@/public/svg/addToCart";
 import { quantitySelector } from "@/redux/slices/cart/addToCartSlice";
+import { useEffect, useLayoutEffect, useState } from "react";
+import {
+  MenuProps,
+  asyncMenuItemsThunk,
+  menuDataSelector,
+} from "@/redux/slices/menuItems/menuItems";
+import  Router  from "next/router";
 
 function Header() {
-  const quantity = useAppSelector(quantitySelector)
+  const [data, setData] = useState([]);
+  const quantity = useAppSelector(quantitySelector);
+  const dispatch = useAppDispatch();
+  const menuData = useAppSelector(menuDataSelector);
 
- 
+  let linkedElement;
+  if(typeof document !== 'undefined') {
+    linkedElement = document.querySelector(".container :nth-child(2)")
+}
+
+  // console.log(menuData[1].title);
+  
+  // useLayoutEffect(() => {
+  //   Router.push()
+  // }, [linkedElement])
+
+  useEffect(() => {
+    setData(menuData);
+  }, [menuData]);
+
+  useEffect(() => {
+    dispatch(asyncMenuItemsThunk());
+  }, []);
 
   return (
     <div className="header_wrapper">
       <div className="header_color">
         <div className="container">
-          <div className="header_each_div">
-            <span>Mon-Sat:</span>
-            <span>10:00 AM - 18:30 PM</span>
-          </div>
-          <div className="header_each_div visit-our-showroom">
-            <span>
-              Visit our showroom in Yerevan Trade Center: D61 showroom{" "}
-            </span>
-          </div>
-          <div className="header_each_div">
-            <span>Contact with Us: +(374) 94 34 00 01</span>
-          </div>
+          {data.map((item: MenuProps) => {
+            return (
+              <div
+                style={{ color: "red" }}
+                className="header_each_div"
+                key={item.id}
+              >
+                {item.title}
+              </div>
+            );
+          })}
 
           <Link href="/wishlist" className="header_each_div wishlist">
             Wishlist
@@ -47,10 +73,10 @@ function Header() {
       <div className="header_belowside ">
         <h1>PWA Ayotech</h1>
         <Link href="/cart" className="addtocart">
-            <span>
-              <AddToCartSVG />
-            </span>
-            <div className="addtocart_quantity">{quantity}</div>
+          <span>
+            <AddToCartSVG />
+          </span>
+          <div className="addtocart_quantity">{quantity}</div>
         </Link>
       </div>
     </div>

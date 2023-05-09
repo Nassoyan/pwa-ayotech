@@ -23,7 +23,6 @@ export default function CartMappedData(props:NewProductItemProps, {deleteItem}:a
   const quantity = product.quantity
    const[count, setCount] = useState(quantity)
     const token = localStorage.getItem("cart_token")
-    console.log(quantity);
     
    const dispatch = useAppDispatch();
    
