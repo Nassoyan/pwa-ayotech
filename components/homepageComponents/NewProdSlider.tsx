@@ -16,9 +16,7 @@ import { dataSelector, tokenSelector } from "@/redux/slices/cart/getCart";
 import { statusSelector } from "@/redux/slices/authentication/loginSlice";
 import Router from "next/router";
 
-type NewProductItemsProps = {
-  product: Product;
-};
+
 
 function NewProdSlider() {
   const dispatch = useAppDispatch();

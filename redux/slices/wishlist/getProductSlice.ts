@@ -8,6 +8,7 @@ export interface Product {
   name:string
   price:number
   id:number
+  stock:string
 }
 
 interface ProductProps {

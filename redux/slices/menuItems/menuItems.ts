@@ -4,6 +4,7 @@ import  Logger  from "../../features/logger"
 export interface MenuProps {
     id:number
     title:string
+    url?:string
 }
   
   interface menus {
@@ -32,8 +33,6 @@ export const menuItemSlice = createSlice({
     extraReducers:(builder) => {
         builder .addCase(asyncMenuItemsThunk.fulfilled, (state, action: PayloadAction<any>) => {
             state.data = action.payload.data
-            console.log(action.payload.data[1].title);
-            state.link = action.payload.data[1].title
         })
     }
 })

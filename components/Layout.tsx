@@ -1,11 +1,13 @@
 import { ReactNode, useEffect } from 'react';
 import Footer from './homepageComponents/Footer'
-import Header from './homepageComponents/Header'
+import Header from './homepageComponents/navbar_header/Header'
 import { useRouter } from 'next/router';
 
 type Props = {
   children: ReactNode;
 };
+const height = 34;
+const footerHeight = 164
 
 export default function Layout({ children }: Props) {
   const router = useRouter()
