@@ -12,17 +12,17 @@ const footerHeight = 164
 export default function Layout({ children }: Props) {
   const router = useRouter()
 
-  useEffect(() => {
-    const bodyHeight = document.body.scrollHeight
-    const windowHeight = window.innerHeight
+  // useEffect(() => {
+  //   const bodyHeight = document.body.scrollHeight
+  //   const windowHeight = window.innerHeight
 
-    const footer = document.querySelector(".footer_wrapper")
-    if (bodyHeight < windowHeight) {
-      footer?.classList.add("layout_footer")
-    } else {
-      footer?.classList.remove("layout_footer")
-    }
-  }, [children])
+  //   const footer = document.querySelector(".footer_wrapper")
+  //   if (bodyHeight < windowHeight) {
+  //     footer?.classList.add("layout_footer")
+  //   } else {
+  //     footer?.classList.remove("layout_footer")
+  //   }
+  // }, [children])
 
   switch (router.pathname) {
     case '/register':

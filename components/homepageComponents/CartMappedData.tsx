@@ -84,7 +84,11 @@ export default function CartMappedData(props:NewProductItemProps, {deleteItem}:a
                             cart_token: token,
                             quantity: count+1
                           })
-                        );
+                        ).then(() => {
+                          dispatch(asyncGetCartThunk({
+                            cart_token: token
+                          }))
+                        })
                       }}
                       style={{
                         padding: "5px",

@@ -15,6 +15,8 @@ import "@/styles/addToCart.scss"
 import "@/styles/getCart.scss"
 import "@/styles/menuItems.scss"
 import "@/styles/product.scss"
+import "@/styles/productId.scss"
+import "@/styles/crosSellers.scss"
 
 import type { AppProps } from 'next/app'
 import { store } from '@/redux/features/store';

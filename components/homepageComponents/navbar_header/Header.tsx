@@ -39,12 +39,14 @@ function Header() {
       <Link
         href="/product"
         style={{
-          paddingLeft: "70px",
-          fontSize: "25px",
-          textDecoration: "underLine",
+          display: "flex",
+          justifyContent: "space-between",
+          maxWidth: "1470px",
+          padding: "10px 50px 10px 70px",
+          margin: "0 auto",
         }}
       >
-        Products
+        <span>Products</span>
       </Link>
     </div>
   );
