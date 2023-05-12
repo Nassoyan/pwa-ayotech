@@ -1,4 +1,3 @@
-import Carrrrt from "@/components/homepageComponents/Carrrrt";
 import CartMappedData from "@/components/homepageComponents/CartMappedData";
 import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import { RootState } from "@/redux/features/store";
@@ -12,14 +11,12 @@ function AddToCart() {
 
   const dispatch = useAppDispatch();
   const token = useAppSelector((state: RootState) => state.getCart.cart_token);
-  
-  const data = useAppSelector((state: RootState) => state.getCart.data?.items); //getting data from redux and passing to the state
 
+  const data = useAppSelector((state: RootState) => state.getCart.data?.items); //getting data from redux and passing to the state
 
   useEffect(() => {
     setState(data);
   }, [data]);
-  
 
   useEffect(() => {
     dispatch(
@@ -32,7 +29,7 @@ function AddToCart() {
 
   function deleteItem(id: number) {
     setState((prev: any) => {
-      return prev.filter((t:any) => t.id !== id);
+      return prev.filter((t: any) => t.id !== id);
     });
   }
 
@@ -58,18 +55,14 @@ function AddToCart() {
           Back
         </Link>
         <p className="added_products">Your added Products</p>
-        <h2
-          onClick={handleEmptyCartClick}
-          style={{ color: "red", cursor: "pointer" }}
-        >
+        <span className="empty_all_items" onClick={handleEmptyCartClick}>
           Empty all items
-        </h2>
+        </span>
         <div className="added_products_container">
           {state?.map((item: any) => {
             return (
               <CartMappedData
-                deleteItem
-                ={(item: any) => deleteItem(item.id)}
+                deleteItem={(item: any) => deleteItem(item.id)}
                 key={item.id}
                 product={item}
               />

@@ -2,13 +2,11 @@ import Heart from "@/public/svg/Heart";
 import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import { asyncAddToCartThunk } from "@/redux/slices/cart/addToCartSlice";
 import { addProductToWishlistThunk } from "@/redux/slices/wishlist/addProductSlice";
-import { Product, getProductSelector, getProductThunk } from "@/redux/slices/wishlist/getProductSlice";
 import Image from "next/legacy/image";
-import React, { useEffect } from "react";
 import Slider from "react-slick";
 
-export default function UpSellers({dataId}:any) {
-    const dispatch = useAppDispatch();
+export default function UpSellers({ dataId }: any) {
+  const dispatch = useAppDispatch();
 
   function SampleNextArrow(props: any) {
     const { onClick } = props;
@@ -45,16 +43,13 @@ export default function UpSellers({dataId}:any) {
   }
 
   const settings = {
-    infinite: true,
     dots: true,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    speed: 500,
-    centerPadding: '60px',
-
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
     centerMode: true,
-    // variableWidth: true,
-
+    variableWidth: true,
+    adaptiveHeight: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -87,36 +82,36 @@ export default function UpSellers({dataId}:any) {
 
   return (
     <div className="crossellers_container">
-        <hr></hr>
+      <hr></hr>
       <h2>Upseller products</h2>
       <Slider className="crossSeller_slider" {...settings}>
-        {dataId?.upSellers?.map((dataId:any) => {
-            return (
-                <div key={dataId.id} className="each_new_prodSlider">
-            <div className="each_new_prodSlider_image">
-              <Image
-                src={dataId.image}
-                layout="intrinsic"
-                width={192}
-                height={280}
-                objectFit="contain"
-                alt="prod"
-                loading="lazy"
-              />
-            </div>
-            <span
-              onClick={() => {
-                dispatch(
-                  addProductToWishlistThunk({
-                    product_id: dataId.id,
-                  })
-                );
-              }}
-            >
-              <Heart />
-            </span>
-            <div
-              onClick={() => {
+        {dataId?.upSellers?.map((dataId: any) => {
+          return (
+            <div key={dataId.id} className="each_new_prodSlider">
+              <div className="each_new_prodSlider_image">
+                <Image
+                  src={dataId.image}
+                  layout="intrinsic"
+                  width={192}
+                  height={280}
+                  objectFit="contain"
+                  alt="prod"
+                  loading="lazy"
+                />
+              </div>
+              <span
+                onClick={() => {
+                  dispatch(
+                    addProductToWishlistThunk({
+                      product_id: dataId.id,
+                    })
+                  );
+                }}
+              >
+                <Heart />
+              </span>
+              <div
+                onClick={() => {
                   dispatch(
                     asyncAddToCartThunk({
                       product_id: dataId.id,
@@ -126,14 +121,13 @@ export default function UpSellers({dataId}:any) {
                         ?.toString(),
                     })
                   );
-                }
-              }
-              className="plus-sign"
-            >
-              +
+                }}
+                className="plus-sign"
+              >
+                +
+              </div>
             </div>
-          </div>
-            )
+          );
         })}
       </Slider>
     </div>

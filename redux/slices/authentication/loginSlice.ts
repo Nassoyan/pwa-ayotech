@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import Logger from "../../features/logger"
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from "@/redux/features/store";
 
 const name = "AUTHENTICATION"
 
@@ -94,7 +95,7 @@ async (params:LoginProps, {rejectWithValue}) => {
       }
   })
 
-  export const statusSelector = ((state:any) => state.login.status)
+  export const statusSelector = ((state:RootState) => state.login.status)
   // export const { clearMessage } = loginSlice.actions
 
   export default loginSlice.reducer

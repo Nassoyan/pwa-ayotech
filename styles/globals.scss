@@ -27,10 +27,6 @@
     color: unset;
   }
 
-  // body > iframe {
-  //   display: none !important;
-  // }
-
   .layout_footer {
     position: absolute;
     bottom: 0;
@@ -41,6 +37,10 @@
   }
   a{
     outline-style: none;
+  }
+
+  .out_of_stock {
+    visibility: hidden !important;
   }
 
 

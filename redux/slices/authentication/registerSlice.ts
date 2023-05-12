@@ -1,3 +1,4 @@
+import { RootState } from '@/redux/features/store';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 
@@ -58,9 +59,9 @@ export const registerSlice = createSlice({
 
 export default registerSlice.reducer;
 
-export const emailSelector = ((state:any) => state.register.email)
-export const registarationFulfiled = ((state:any) => state.register.regIsFulfiled)
-export const messageSelector = ((state:any) => state.register.message)
+export const emailSelector = ((state:RootState) => state.register.email)
+export const registarationFulfiled = ((state:RootState) => state.register.regIsFulfiled)
+export const messageSelector = ((state:RootState) => state.register.message)
 
 
 

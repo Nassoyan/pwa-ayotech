@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import Logger from "../../features/logger"
 import Router  from "next/router";
+import { RootState } from "@/redux/features/store";
 
 const name = "AUTHENTICATION"
 
@@ -49,7 +50,7 @@ async (params:ResetProps, {rejectWithValue}) => {
   })
 
 
-  export const forgotMessageSelector = (state:any) => state.resetPassword.message
+  export const forgotMessageSelector = (state:RootState) => state.resetPassword.message
   export default resetPasswordSlice.reducer
 
 

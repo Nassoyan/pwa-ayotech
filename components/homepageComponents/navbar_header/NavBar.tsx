@@ -12,7 +12,6 @@ export default function NavBar() {
   const menuData = useAppSelector(menuDataSelector);
   const [data, setData] = useState<any>();
 
-
   useEffect(() => {
     dispatch(asyncMenuItemsThunk());
   }, []);
@@ -26,7 +25,9 @@ export default function NavBar() {
       <ul style={{ display: "flex", gap: "30px" }}>
         {data?.map((menu: MenuProps) => {
           const depthLevel = 0;
-          return <MenuItems items={menu} key={menu.id} depthLevel={depthLevel}/>;
+          return (
+            <MenuItems items={menu} key={menu.id} depthLevel={depthLevel} />
+          );
         })}
       </ul>
     </nav>

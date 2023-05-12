@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   asyncRegisterThunk,
   messageSelector,
-  registarationFulfiled,
 } from "@/redux/slices/authentication/registerSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import ShowPassword from "@/public/svg/ShowPassword";
 import Link from "next/link";
 
 function RegisterField({ setRegister, register }: any) {
-  
   const [person, setPerson] = useState({
     name: "",
     surName: "",
@@ -22,9 +20,6 @@ function RegisterField({ setRegister, register }: any) {
 
   const dispatch = useAppDispatch();
   const payloadMessage = useAppSelector(messageSelector);
-  // const regIsFulfileddd = useAppSelector(registarationFulfiled);
-
-  
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,9 +31,7 @@ function RegisterField({ setRegister, register }: any) {
         phone_number: person.phoneNumber,
         password: person.password,
       })
-    ).then((res)=>
-    !res.payload.errors && setRegister(false)
-    )
+    ).then((res) => !res.payload.errors && setRegister(false));
   }
 
   function handleChange(e: any) {
@@ -71,7 +64,7 @@ function RegisterField({ setRegister, register }: any) {
         </div>
         <div className="input_area">
           <form
-            onSubmit={(e)=>handleSubmit(e)}
+            onSubmit={(e) => handleSubmit(e)}
             autoComplete="off"
             className="login_form"
           >

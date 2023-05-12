@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import  Logger  from "../../features/logger"
+import { RootState } from "@/redux/features/store";
 
 export interface Brands {
     logo: string[]
@@ -40,4 +41,4 @@ export const brandsSlice = createSlice({
 })
 
 export default brandsSlice.reducer
-export const brandsDataSelector = ((state:any) => state.brands.data)
+export const brandsDataSelector = ((state:RootState) => state.brands.data)

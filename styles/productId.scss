@@ -24,6 +24,8 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
+            overflow-y: scroll;
+            height: 235px;
             .comment {
                 display: flex;
                 justify-content: space-between;
@@ -41,6 +43,22 @@
         > form {
             display: flex;
             flex-direction: column;
+            .rating_box {
+                display: flex;
+                justify-content: space-between;
+                .rating_nums {
+                    display: flex;
+                    gap: 8px;
+                    >span {
+                        cursor: pointer;
+                        &:hover {
+                            transform: scale(1.2);
+                            color: red;
+                        }
+                        transform: scale(1.1);
+                    }
+                }
+            }
             > div {
                 text-align: right;
                 > button {

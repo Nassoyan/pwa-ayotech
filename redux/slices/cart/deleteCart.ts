@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import Logger from "../../features/logger";
+import { RootState } from "@/redux/features/store";
 
 export interface Delete {
   item_id: number | null | string;
@@ -41,4 +42,4 @@ export const deleteCartSlice = createSlice({
 });
 
 export default deleteCartSlice.reducer;
-export const token = (state: any) => state.deleteCart.cart_token
+export const token = (state: RootState) => state.deleteCart.cart_token

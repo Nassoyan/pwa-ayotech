@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -17,21 +17,19 @@ function Login() {
   const [respMessage, setRespMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [register, setRegister] = useState<boolean>(false);
-  const [forgotPassword, setForgotPassword] = useState(false);
 
-  const loginStatus = useAppSelector(statusSelector);
   const dispatch = useAppDispatch();
   const payloadMessage = useAppSelector(messageSelector);
   const status = useAppSelector(statusSelector);
   const router = useRouter();
 
-  const handleOpen = useCallback(() => {
-    setRegister(true);
-  }, [register]);
+  // const handleOpen = useCallback(() => {
+  //   setRegister(true);
+  // }, [register]);
 
-  // useEffect(() => {
-  //   loginStatus && router.push("/")
-  // }, loginStatus)
+  // // useEffect(() => {
+  // //   loginStatus && router.push("/")
+  // // }, loginStatus)
 
   function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
@@ -47,7 +45,7 @@ function Login() {
       asyncLoginThunk({
         email: email,
         password: password,
-        guest_cart_token: localStorage.getItem("cart_token")
+        guest_cart_token: localStorage.getItem("cart_token"),
       })
     ).then((res: any) => {
       setRespMessage(res?.payload?.result?.message);

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import Logger from "../../features/logger";
+import { RootState } from "@/redux/features/store";
 
 export interface Item {
   cart_token:any
@@ -42,5 +43,5 @@ export const getCartSlice = createSlice({
 });
 
 export default getCartSlice.reducer;
-export const tokenSelector = ((state:Item) => state.getCart.cart_token)
-export const dataSelector = ((state:Item) => state.getCart.data)
+export const tokenSelector = ((state:RootState) => state.getCart.cart_token)
+export const dataSelector = ((state:RootState) => state.getCart.data)

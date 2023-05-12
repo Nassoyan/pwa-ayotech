@@ -2,31 +2,24 @@ import React, { useEffect } from "react";
 import Slider from "react-slick";
 import Image from "next/legacy/image";
 import Heart from "@/public/svg/Heart";
+import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
+import { Product } from "@/redux/slices/wishlist/getProductSlice";
+import { addProductToWishlistThunk } from "@/redux/slices/wishlist/addProductSlice";
+import { asyncAddToCartThunk } from "@/redux/slices/cart/addToCartSlice";
+import { statusSelector } from "@/redux/slices/authentication/loginSlice";
 import {
   getProductSelector,
   getProductThunk,
 } from "@/redux/slices/wishlist/getProductSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
-import { Product } from "@/redux/slices/wishlist/getProductSlice";
-import addProductSlice, {
-  addProductToWishlistThunk,
-} from "@/redux/slices/wishlist/addProductSlice";
-import { asyncAddToCartThunk } from "@/redux/slices/cart/addToCartSlice";
-import { dataSelector, tokenSelector } from "@/redux/slices/cart/getCart";
-import { statusSelector } from "@/redux/slices/authentication/loginSlice";
-import Router from "next/router";
-
-
 
 function NewProdSlider() {
   const dispatch = useAppDispatch();
   const data: Product[] = useAppSelector(getProductSelector);
   const loginStatus = useAppSelector(statusSelector);
-  
 
   useEffect(() => {
     dispatch(getProductThunk());
-  }, [dispatch]);
+  }, []);
 
   function SampleNextArrow(props: any) {
     const { onClick } = props;
@@ -126,17 +119,14 @@ function NewProdSlider() {
             </span>
             <div
               onClick={() => {
-                  dispatch(
-                    asyncAddToCartThunk({
-                      product_id: el.id,
-                      quantity: 1,
-                      cart_token: localStorage
-                        .getItem("cart_token")
-                        ?.toString(),
-                    })
-                  );
-                }
-              }
+                dispatch(
+                  asyncAddToCartThunk({
+                    product_id: el.id,
+                    quantity: 1,
+                    cart_token: localStorage.getItem("cart_token")?.toString(),
+                  })
+                );
+              }}
               className="plus-sign"
             >
               +

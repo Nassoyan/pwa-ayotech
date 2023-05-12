@@ -9,11 +9,7 @@ import Link from "next/link";
 import Image from "next/legacy/image";
 import Heart from "@/public/svg/Heart";
 import { asyncAddToCartThunk } from "@/redux/slices/cart/addToCartSlice";
-import  Router  from "next/router";
-
-type NewProductItemsProps = {
-  product: Product;
-};
+import Router from "next/router";
 
 function Product() {
   const dispatch = useAppDispatch();
@@ -31,7 +27,7 @@ function Product() {
           maxWidth: "1470px",
           padding: "10px 50px 10px 70px",
           margin: "0 auto",
-          cursor:"pointer"
+          cursor: "pointer",
         }}
         href="/"
       >
@@ -41,13 +37,13 @@ function Product() {
         {data?.map((item: Product) => {
           return (
             <div
-              onClick={()=> {
-                Router.push(`product/${item.id}`)
+              onClick={() => {
+                Router.push(`product/${item.id}`);
               }}
               style={{
                 position: "relative",
                 borderRadius: "20px",
-                cursor:"pointer"
+                cursor: "pointer",
               }}
               key={item.id}
               className="product_box"
@@ -62,7 +58,13 @@ function Product() {
                 loading="lazy"
               />
               <span>{item.price}</span>
-              <span style={{color:"yellowgreen"}}>{item.stock}</span>
+              <span
+                style={{
+                  color: item.stock === "In stock" ? "yellowgreen" : "darkred",
+                }}
+              >
+                {item.stock}
+              </span>
               <span
                 style={{
                   position: "absolute",
@@ -74,7 +76,9 @@ function Product() {
                 <Heart />
               </span>
               <div
-                className="plus-sign"
+                className={`${
+                  item.stock === "In stock" ? "plus-sign" : "out_of_stock"
+                }`}
                 style={{
                   width: "100%",
                   display: "flex",
@@ -83,18 +87,18 @@ function Product() {
                 }}
               >
                 <div
-                 onClick={(e) => {
-                  e.stopPropagation()
-                  dispatch(
-                    asyncAddToCartThunk({
-                      product_id: item.id,
-                      quantity: 1,
-                      cart_token: localStorage
-                        .getItem("cart_token")
-                        ?.toString(),
-                    })
-                  );
-                }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(
+                      asyncAddToCartThunk({
+                        product_id: item.id,
+                        quantity: 1,
+                        cart_token: localStorage
+                          .getItem("cart_token")
+                          ?.toString(),
+                      })
+                    );
+                  }}
                   style={{
                     width: "40px",
                     height: "40px",

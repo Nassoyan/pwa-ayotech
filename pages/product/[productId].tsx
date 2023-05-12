@@ -1,6 +1,7 @@
 import CrossSellers from "@/components/productPage/CrossSellers";
 import UpSellers from "@/components/productPage/UpSellers";
 import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
+import { asyncReviewThunk } from "@/redux/slices/review/review";
 import {
   Product,
   getProductSelector,
@@ -8,11 +9,12 @@ import {
 } from "@/redux/slices/wishlist/getProductSlice";
 import Image from "next/legacy/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Comment {
   id: number;
   text: string;
+  rating: number;
 }
 
 function ProductReview() {
@@ -21,7 +23,10 @@ function ProductReview() {
 
   const [comments, setComments] = useState<Comment[]>([]);
   const [text, setText] = useState("");
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [rating, setRating] = useState(0);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useAppDispatch();
   const data: Product[] = useAppSelector(getProductSelector);
@@ -39,17 +44,29 @@ function ProductReview() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (text.trim() !== "") {
-      const newComment: Comment = { id: Date.now(), text };
+    if (text.trim() !== "" && rating > 0) {
+      const newComment: Comment = { id: Date.now(), text, rating };
       setComments([...comments, newComment]);
       setText("");
-      setCount(() => count+1)
+      setRating(0);
+      inputRef.current?.focus();
+      dispatch(
+        asyncReviewThunk({
+          product_id: dataId.id,
+          comment: text,
+          rating: rating,
+        })
+      );
     }
   }
 
   function handleDelete(id: number) {
     setComments(comments.filter((comment) => comment.id !== id));
-    setCount(() => count-1)
+    setCount(() => count - 1);
+  }
+
+  function handleRatingChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setRating(parseInt(event.target.value, 10));
   }
 
   return (
@@ -74,8 +91,44 @@ function ProductReview() {
 
         <div className="review_box">
           <form onSubmit={handleSubmit}>
-            <label className="comments">Մեկնաբանություններ ({count})</label>
+            <div className="rating_box">
+              <label className="comments">Մեկնաբանություններ ({count})</label>
+              <div className="rating_nums">
+                rate:
+                <input
+                  type="radio"
+                  name="rating"
+                  value="1"
+                  onChange={handleRatingChange}
+                />
+                <input
+                  type="radio"
+                  name="rating"
+                  value="2"
+                  onChange={handleRatingChange}
+                />
+                <input
+                  type="radio"
+                  name="rating"
+                  value="3"
+                  onChange={handleRatingChange}
+                />
+                <input
+                  type="radio"
+                  name="rating"
+                  value="4"
+                  onChange={handleRatingChange}
+                />
+                <input
+                  type="radio"
+                  name="rating"
+                  value="5"
+                  onChange={handleRatingChange}
+                />
+              </div>
+            </div>
             <textarea
+              ref={inputRef}
               value={text}
               onChange={handleChange}
               placeholder="Մեկնաբանություններ"
@@ -85,13 +138,13 @@ function ProductReview() {
             </div>
           </form>
           <div className="comment_list">
-          {comments.map((comment) => (
-            <div key={comment.id} className="comment">
-              <p>{comment.text}</p>
-              <button onClick={() => handleDelete(comment.id)}>Ջնջել</button>
-            </div>
-          ))}
-        </div>
+            {comments.map((comment) => (
+              <div key={comment.id} className="comment">
+                <p>{comment.text}</p>
+                <button onClick={() => handleDelete(comment.id)}>Ջնջել</button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <CrossSellers dataId={dataId} />

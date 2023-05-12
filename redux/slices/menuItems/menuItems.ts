@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import  Logger  from "../../features/logger"
+import { RootState } from "@/redux/features/store";
 
 export interface MenuProps {
     id:number
@@ -14,9 +15,9 @@ export interface MenuProps {
   
   
   
-  const initialState:menus = {
+  const initialState = {
     data:[]
-  }
+  } as menus
 
 export const  asyncMenuItemsThunk = createAsyncThunk(`menu/items`,
 async () => {
@@ -38,5 +39,5 @@ export const menuItemSlice = createSlice({
 })
 
  export default menuItemSlice.reducer
- export const menuDataSelector = ((state:any) => state.menuItems.data)
- export const linkSelector = ((state:any) => state.menuItems.link)
+ export const menuDataSelector = ((state:RootState) => state.menuItems.data)
+ export const linkSelector = ((state:RootState) => state.menuItems.link)

@@ -6,4 +6,21 @@
     margin-top: 20px;
     gap: 50px;
     padding: 0 80px;
+    margin-bottom: 50px;
+}
+
+.added_products {
+    text-align: center;
+    color: blue;
+}
+.addToCart-back {
+    padding-left: 70px;
+}
+
+.empty_all_items {
+    padding-left: 70px;
+    color: red;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bold;
 }

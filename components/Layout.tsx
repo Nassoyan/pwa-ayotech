@@ -6,8 +6,6 @@ import { useRouter } from 'next/router';
 type Props = {
   children: ReactNode;
 };
-const height = 34;
-const footerHeight = 164
 
 export default function Layout({ children }: Props) {
   const router = useRouter()
