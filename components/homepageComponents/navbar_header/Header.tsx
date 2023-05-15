@@ -3,10 +3,17 @@ import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import AddToCartSVG from "@/public/svg/addToCart";
 import { quantitySelector } from "@/redux/slices/cart/addToCartSlice";
 import NavBar from "./NavBar";
+import { useEffect } from "react";
+import { asyncGetCartThunk } from "@/redux/slices/cart/getCart";
 
 function Header() {
   const quantity = useAppSelector(quantitySelector);
+  const dispatch = useAppDispatch()
 
+ useEffect(() => { //this is for showing quantity in headers icon cart
+  dispatch(asyncGetCartThunk({cart_token: localStorage.getItem("cart_token")}))
+ })
+ 
   return (
     <div className="header_wrapper">
       <div className="header_color">

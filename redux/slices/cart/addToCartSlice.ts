@@ -31,13 +31,19 @@ export const asyncAddToCartThunk = createAsyncThunk(
 export const addToCartSlice = createSlice({
   name: "AddToCart",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteProduct: (state, action) => {
+      console.log(action);
+      
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(
       asyncAddToCartThunk.fulfilled,
       (state: ProductId, action: PayloadAction<any>) => {
-        !localStorage.getItem("cart_token") &&
+        action?.payload?.cartinfo?.token &&
           localStorage.setItem("cart_token", action?.payload?.cartinfo?.token);
+          
           state.dataLength = action?.payload?.cartinfo?.items?.length
       }
     );

@@ -1,0 +1,19 @@
+.pagination_container {
+    display: flex;
+    width: 100%;
+    padding: 0 50px;
+    justify-content: space-between;
+    .pagination {
+        width: 100%;
+        display: flex;
+    }
+    .page_number {
+        font-size: 20px;
+        font-weight: bold;
+        &:hover {
+            color: red;
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+    }
+}

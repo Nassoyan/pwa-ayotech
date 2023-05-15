@@ -26,7 +26,7 @@ function ProductReview() {
   const [count, setCount] = useState(0);
   const [rating, setRating] = useState(0);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const dispatch = useAppDispatch();
   const data: Product[] = useAppSelector(getProductSelector);
@@ -38,7 +38,7 @@ function ProductReview() {
     dispatch(getProductThunk());
   }, []);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setText(event.target.value);
   }
 
@@ -66,7 +66,7 @@ function ProductReview() {
   }
 
   function handleRatingChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setRating(parseInt(event.target.value, 10));
+    setRating(parseInt(event.target.value, 5));
   }
 
   return (

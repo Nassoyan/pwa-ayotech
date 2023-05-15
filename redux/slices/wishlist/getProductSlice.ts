@@ -1,6 +1,8 @@
-import { RootState } from "@/redux/features/store";
+import { RootState } from './../../features/store';
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+
+
 
 export interface Product {
   image: string
@@ -9,10 +11,12 @@ export interface Product {
   price:number
   id:number
   stock:string
+  
 }
 
-interface ProductProps {
+export interface ProductProps {
     data:Product[]
+    paginate?:string
 }
 
 
@@ -25,7 +29,7 @@ export const getProductThunk = createAsyncThunk(
     `/get/products`,
     async (value) => {
       const response = await fetch(
-        "https://pwaback.ayotech.am/api/products",{
+        "https://pwaback.ayotech.am/api/products",{ //this api used also for products page, for getting products
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -48,10 +52,12 @@ export const getProductThunk = createAsyncThunk(
             builder
             .addCase(getProductThunk.fulfilled, (state:ProductProps, action:any) => {
                 state.data = action.payload.data
+                state.paginate = action.payload.links
             })
         }
     })
 
     export default getProductSlice.reducer
     export const getProductSelector = ((state:RootState) => state.getProduct.data)
+    export const paginationSelector = ((state:RootState) => state.getProduct.paginate)
    

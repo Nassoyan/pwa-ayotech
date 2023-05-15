@@ -1,6 +1,5 @@
 .crossellers_container {
     width: 100%;
-    // margin: 55px 0 40px 50px;
     margin-bottom: 100px;
     margin-top: 30px;
     >h2 {
@@ -16,8 +15,6 @@
               >div {
                 margin: 0 10px;
                 .each_new_prodSlider{
-                //   width: 320px;
-                  // height: 300px;
                   width: unset !important;
                   border-radius: 15px;
                   padding: 10px;
@@ -73,6 +70,13 @@
         top: 40%;
         left: 15px;
         z-index: 1;
+        &:hover {
+          transform: scale(1.5);
+          color: yellow;
+          >svg path {
+            stroke: rgb(200, 255, 0);
+          }
+        }
         >svg path {
           stroke: rgb(0, 0, 0);
         }
@@ -84,6 +88,13 @@
         top: 40%;
         right: 15px;
         z-index: 1;
+        &:hover {
+          transform: scale(1.5);
+          color: yellow;
+          >svg path {
+            stroke: rgb(200, 255, 0);
+          }
+        }
         >svg path {
           stroke: rgb(0, 0, 0);
         }

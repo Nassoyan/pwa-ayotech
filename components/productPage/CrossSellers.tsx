@@ -7,7 +7,6 @@ import Slider from "react-slick";
 
 export default function CrossSellers({ dataId }: any) {
   const dispatch = useAppDispatch();
-  console.log(dataId);
 
   function SampleNextArrow(props: any) {
     const { onClick } = props;

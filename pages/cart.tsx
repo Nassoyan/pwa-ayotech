@@ -62,7 +62,7 @@ function AddToCart() {
           {state?.map((item: any) => {
             return (
               <CartMappedData
-                deleteItem={(item: any) => deleteItem(item.id)}
+                deleteItem={(item: any) => deleteItem(item)}
                 key={item.id}
                 product={item}
               />
@@ -75,65 +75,3 @@ function AddToCart() {
 }
 
 export default AddToCart;
-
-// <div className="getCart_each_container" key={item.id}>
-//   <Image
-//     src={item.images[0]}
-//     layout="intrinsic"
-//     width={192}
-//     height={280}
-//     objectFit="contain"
-//     alt="prod"
-//     loading="lazy"
-//   />
-//   <span
-//     onClick={() => {
-//       dispatch(
-//         asyncDeleteCartThunk({
-//           item_id: item.id,
-//           cart_token: token,
-//         })
-//       ).then(() =>
-//         dispatch(asyncGetCartThunk({ cart_token: token }))
-//       );
-//       deleteItem(item.id);
-//     }}
-//   >
-//     Delete
-//   </span>
-//   <div style={{ display: "flex", alignItems: "center" }}>
-//     <span>quantity({quantity})</span>
-//     <span
-//       onClick={() => {
-//         dispatch(
-//           asyncEditCartThunk({
-//             item_id: item.id,
-//             cart_token: token,
-//             quantity: 4,
-//           })
-//         );
-//         quantityPlus(item);
-//       }}
-//       style={{
-//         padding: "5px",
-//         fontSize: "20px",
-//         color: "lightGreen",
-//         cursor: "pointer",
-//       }}
-//     >
-//       +
-//     </span>
-//     /
-//     <span
-//       style={{
-//         padding: "5px",
-//         fontSize: "20px",
-//         color: "yellow",
-//         cursor: "pointer",
-//       }}
-//     >
-//       {" "}
-//       -
-//     </span>
-//   </div>
-// </div>
