@@ -6,6 +6,7 @@ import { asyncAddToCartThunk } from "@/redux/slices/cart/addToCartSlice";
 import Router from "next/router";
 import { Product } from "@/redux/slices/wishlist/getProductSlice";
 import { useAppDispatch } from "@/redux/features/hooks";
+import { asyncGetCategoriesThunk } from "@/redux/slices/categories/searchCategoriesSlice";
 
 interface Links {
   [key: string]: string | null | boolean;
@@ -26,7 +27,10 @@ function Product() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(15);
 
-  const dispatch = useAppDispatch()
+  const [inputText, setInputText] = useState<string>();
+
+  const dispatch = useAppDispatch();
+  console.log(data, "ffff");
 
   const pageNumbers: number[] = [];
   const totalPosts = data?.meta.total;
@@ -70,21 +74,30 @@ function Product() {
       .then((res) => res.json())
       .then((req) => setData(req));
   }, []);
+
+  function handleSearchInput(event: React.ChangeEvent<HTMLInputElement>) {
+    setInputText(event.target.value);
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    dispatch(asyncGetCategoriesThunk());
+    setInputText("");
+  }
   return (
     <>
-      <Link
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          maxWidth: "1470px",
-          padding: "10px 50px 10px 70px",
-          margin: "0 auto",
-          cursor: "pointer",
-        }}
-        href="/"
-      >
-        &#x2190; Go Back
-      </Link>
+      <div className="product-search-container">
+        <form onSubmit={handleSubmit}>
+          <input
+            onChange={handleSearchInput}
+            value={inputText}
+            type="search"
+            placeholder="search product..."
+          />
+          <input type="submit" value="Search"></input>
+        </form>
+      </div>
+
       {data ? (
         <div className="product_container">
           {data?.data?.map((item: any) => {
@@ -96,6 +109,9 @@ function Product() {
                 key={item.id}
                 className="product_box"
               >
+                <span style={{ marginTop: "10px" }}>{item.title}</span>
+
+
                 <Image
                   src={item.image}
                   layout="intrinsic"
@@ -114,8 +130,7 @@ function Product() {
                 >
                   {item.stock}
                 </span>
-                <span
-                className="heart_product_page" >
+                <span className="heart_product_page">
                   <Heart />
                 </span>
                 <div
@@ -124,7 +139,7 @@ function Product() {
                   }`}
                 >
                   <div
-                  className="addToCart_icon"
+                    className="addToCart_icon"
                     onClick={(e) => {
                       e.stopPropagation();
                       dispatch(

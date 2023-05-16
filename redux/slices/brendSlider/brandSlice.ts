@@ -25,7 +25,6 @@ async () => {
             method: 'POST',
             url: `https://pwaback.ayotech.am/api/brands`
         })
-    
 })
 
 export const brandsSlice = createSlice({

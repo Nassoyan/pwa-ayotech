@@ -11,6 +11,8 @@ import addToCartReducer from "../slices/cart/addToCartSlice"
 import getCartReducer from "../slices/cart/getCart"
 import deleteCartReducer from "../slices/cart/deleteCart"
 import menuItemsReducer from "../slices/menuItems/menuItems"
+import postReducer from "../slices/blogposts/postSlice"
+import searchCategoriesReducer from "../slices/categories/searchCategoriesSlice"
 // import { productApi } from "./product/products-api-alice";
 
 export const store = configureStore({
@@ -25,7 +27,9 @@ export const store = configureStore({
     addToCart:addToCartReducer,
     getCart:getCartReducer,
     deleteCart:deleteCartReducer,
-    menuItems:menuItemsReducer
+    menuItems:menuItemsReducer,
+    posts:postReducer,
+    searchCategories:searchCategoriesReducer
     // [productApi.reducerPath]: productApi.reducer
   },
   // middleware:(getDefaultMiddleware)=> {

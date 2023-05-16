@@ -8,12 +8,15 @@ import { asyncGetCartThunk } from "@/redux/slices/cart/getCart";
 
 function Header() {
   const quantity = useAppSelector(quantitySelector);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
- useEffect(() => { //this is for showing quantity in headers icon cart
-  dispatch(asyncGetCartThunk({cart_token: localStorage.getItem("cart_token")}))
- })
- 
+  useEffect(() => {
+    //this is for showing quantity in headers icon cart
+    dispatch(
+      asyncGetCartThunk({ cart_token: localStorage.getItem("cart_token") })
+    );
+  });
+
   return (
     <div className="header_wrapper">
       <div className="header_color">
@@ -43,18 +46,12 @@ function Header() {
           <div className="addtocart_quantity">{quantity}</div>
         </Link>
       </div>
-      <Link
-        href="/product"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          maxWidth: "1470px",
-          padding: "10px 50px 10px 70px",
-          margin: "0 auto",
-        }}
-      >
-        <span>Products</span>
-      </Link>
+      <div style={{ width: "5%", marginLeft: "70px" }}>
+        <Link href="/">Home</Link>
+      </div>
+      <div style={{ width: "5%", marginLeft: "70px", marginTop:"15px" }}>
+        <Link href="/">Products</Link>
+      </div>
     </div>
   );
 }

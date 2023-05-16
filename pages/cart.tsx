@@ -51,9 +51,6 @@ function AddToCart() {
   return (
     <div className="addToCart">
       <div className="addToCart_container">
-        <Link href="/" className="addToCart-back">
-          Back
-        </Link>
         <p className="added_products">Your added Products</p>
         <span className="empty_all_items" onClick={handleEmptyCartClick}>
           Empty all items

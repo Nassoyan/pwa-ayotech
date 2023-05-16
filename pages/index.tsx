@@ -1,3 +1,4 @@
+import BlogPost from '@/components/homepageComponents/BlogPost'
 import Brands from '@/components/homepageComponents/Brends'
 import Description from '@/components/homepageComponents/Description'
 import Footer from '@/components/homepageComponents/Footer'
@@ -17,6 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <TopSlider/>
+      <BlogPost/>
       <NewProdSlider/>
       <Description/>
       <Brands/>

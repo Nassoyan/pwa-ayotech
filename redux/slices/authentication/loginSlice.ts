@@ -22,43 +22,6 @@ const initialState = {
     status:'',
 }
 
-
-
-// export const logOutThunk = createAsyncThunk(
-//   `logout/products`,
-//   async () => {
-//     const response = await fetch(
-//       "https://arformeback.ayotech.am/api/auth/logout",{
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//           "Access-Control-Allow-Origin" : "*",
-//           "Accept": "application/json",
-//           "Authorization": `Bearer ${Cookies.get("authorized")}`,
-
-//         },
-//       }
-//     );
-//     return await response.json();
-//   }
-// );
-
-
-// export const asyncChangePassword = createAsyncThunk(
-//   `${name}/auth/change-password`,
-//   async (params:any, {rejectWithValue}) => {
-//       try {
-//           return await logger({
-//               method: 'POST',
-//               url: `https://arformeback.ayotech.am/api/auth/change-password`,
-//               body: {...params},
-//           })
-//       } catch (err) {
-//           return rejectWithValue(err)
-//       }
-//   }
-// )
-
 export const  asyncLoginThunk = createAsyncThunk(`${name}/login`,
 async (params:LoginProps, {rejectWithValue}) => {
     try {

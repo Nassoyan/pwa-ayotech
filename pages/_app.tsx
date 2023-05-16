@@ -18,6 +18,7 @@ import "@/styles/product.scss";
 import "@/styles/productId.scss";
 import "@/styles/crosSellers.scss";
 import "@/styles/paginate.scss";
+import "@/styles/blogPost.scss"
 
 
 import type { AppProps } from "next/app";

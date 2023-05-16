@@ -1,0 +1,22 @@
+.blogpost-container {
+    width: 100%;
+    padding: 0 50px;
+    margin-top: 80px;
+    >hr {
+        margin-top: 80px;
+    }
+    .blogpost-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .each-blogpost {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid rgb(232, 232, 232);
+                border-radius: 10px;
+                padding: 10px;
+            }
+        }
+}
