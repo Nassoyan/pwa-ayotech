@@ -31,12 +31,7 @@ export const asyncAddToCartThunk = createAsyncThunk(
 export const addToCartSlice = createSlice({
   name: "AddToCart",
   initialState,
-  reducers: {
-    deleteProduct: (state, action) => {
-      console.log(action);
-      
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
       asyncAddToCartThunk.fulfilled,

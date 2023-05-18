@@ -21,13 +21,14 @@ import "@/styles/paginate.scss";
 import "@/styles/blogPost.scss"
 
 
+
 import type { AppProps } from "next/app";
 import { store } from "@/redux/features/store";
 import { Provider } from "react-redux";
 import Layout from "@/components/Layout";
-import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
+ 
   return (
     <>
       <Provider store={store}>

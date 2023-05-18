@@ -50,7 +50,7 @@ function Header() {
         <Link href="/">Home</Link>
       </div>
       <div style={{ width: "5%", marginLeft: "70px", marginTop:"15px" }}>
-        <Link href="/">Products</Link>
+        <Link href="/product">Products</Link>
       </div>
     </div>
   );

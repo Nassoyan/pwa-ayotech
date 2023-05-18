@@ -105,7 +105,7 @@ function RegisterField({ setRegister, register }: any) {
                 value={person.email}
                 onChange={handleChange}
                 type="email"
-                placeholder="email"
+                placeholder="name@example.com"
               />
               <p style={{ color: "red", fontSize: "12px" }}>
                 {payloadMessage?.errors?.email && payloadMessage?.errors?.email}

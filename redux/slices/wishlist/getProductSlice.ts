@@ -17,12 +17,15 @@ export interface Product {
 export interface ProductProps {
     data:Product[]
     paginate?:string
+    isLoading?:boolean
 }
 
 
 
 const initialState:ProductProps = {
     data:[],
+    isLoading:false
+
 }
 
 export const getProductThunk = createAsyncThunk(
@@ -53,6 +56,7 @@ export const getProductThunk = createAsyncThunk(
             .addCase(getProductThunk.fulfilled, (state:ProductProps, action:any) => {
                 state.data = action.payload.data
                 state.paginate = action.payload.links
+                state.isLoading = true
             })
         }
     })
@@ -60,4 +64,5 @@ export const getProductThunk = createAsyncThunk(
     export default getProductSlice.reducer
     export const getProductSelector = ((state:RootState) => state.getProduct.data)
     export const paginationSelector = ((state:RootState) => state.getProduct.paginate)
+    export const loadingSelector = ((state:RootState) => state.getProduct.isLoading)
    

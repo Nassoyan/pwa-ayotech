@@ -3,10 +3,13 @@ import Slider from "react-slick";
 import Image from "next/legacy/image";
 import Heart from "@/public/svg/Heart";
 import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
-import { Product } from "@/redux/slices/wishlist/getProductSlice";
+import {
+  Product,
+  loadingSelector,
+} from "@/redux/slices/wishlist/getProductSlice";
 import { addProductToWishlistThunk } from "@/redux/slices/wishlist/addProductSlice";
 import { asyncAddToCartThunk } from "@/redux/slices/cart/addToCartSlice";
-import { statusSelector } from "@/redux/slices/authentication/loginSlice";
+import { MoonLoader } from "react-spinners";
 import {
   getProductSelector,
   getProductThunk,
@@ -15,7 +18,8 @@ import {
 function NewProdSlider() {
   const dispatch = useAppDispatch();
   const data: Product[] = useAppSelector(getProductSelector);
-  const loginStatus = useAppSelector(statusSelector);
+  let loading = useAppSelector(loadingSelector);
+  
 
   useEffect(() => {
     dispatch(getProductThunk());
@@ -91,50 +95,63 @@ function NewProdSlider() {
     ],
   };
   return (
-    <Slider className="newProduct_slider" {...settings}>
-      {data?.map((el: Product) => {
-        return (
-          <div key={el.id} className="each_new_prodSlider">
-            <div className="each_new_prodSlider_image">
-              <Image
-                src={el.image}
-                layout="intrinsic"
-                width={192}
-                height={280}
-                objectFit="contain"
-                alt="prod"
-                loading="lazy"
-              />
-            </div>
-            <span
-              onClick={() => {
-                dispatch(
-                  addProductToWishlistThunk({
-                    product_id: el.id,
-                  })
-                );
-              }}
-            >
-              <Heart />
-            </span>
-            <div
-              onClick={() => {
-                dispatch(
-                  asyncAddToCartThunk({
-                    product_id: el.id,
-                    quantity: 1,
-                    cart_token: localStorage.getItem("cart_token")?.toString(),
-                  })
-                );
-              }}
-              className="plus-sign"
-            >
-              +
-            </div>
-          </div>
-        );
-      })}
-    </Slider>
+    <>
+    <h1 style={{paddingLeft:"50px"}}>Product Slider</h1>
+      {loading ? (
+        <Slider className="newProduct_slider" {...settings}>
+          {data?.map((el: Product) => {
+            return (
+              <div key={el.id} className="each_new_prodSlider">
+                <div className="each_new_prodSlider_image">
+                  <Image
+                    src={el.image}
+                    layout="intrinsic"
+                    width={192}
+                    height={192}
+                    objectFit="cover"
+                    alt="prod"
+                    loading="lazy"
+                  />
+                </div>
+                <span
+                  onClick={() => {
+                    dispatch(
+                      addProductToWishlistThunk({
+                        product_id: el.id,
+                      })
+                    );
+                  }}
+                >
+                  <Heart />
+                </span>
+                <div
+                  onClick={() => {
+                    dispatch(
+                      asyncAddToCartThunk({
+                        product_id: el.id,
+                        quantity: 1,
+                        cart_token: localStorage
+                          .getItem("cart_token")
+                          ?.toString(),
+                      })
+                    );
+                  }}
+                  className="plus-sign"
+                >
+                  +
+                </div>
+              </div>
+            );
+          })}
+        </Slider>
+      ) : (
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <MoonLoader color="black" size={80} />
+        </div>
+      )}
+    </>
   );
 }
 

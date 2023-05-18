@@ -7,6 +7,7 @@ import Router from "next/router";
 import { Product } from "@/redux/slices/wishlist/getProductSlice";
 import { useAppDispatch } from "@/redux/features/hooks";
 import { asyncGetCategoriesThunk } from "@/redux/slices/categories/searchCategoriesSlice";
+import { MoonLoader } from "react-spinners";
 
 interface Links {
   [key: string]: string | null | boolean;
@@ -30,7 +31,6 @@ function Product() {
   const [inputText, setInputText] = useState<string>();
 
   const dispatch = useAppDispatch();
-  console.log(data, "ffff");
 
   const pageNumbers: number[] = [];
   const totalPosts = data?.meta.total;
@@ -79,15 +79,15 @@ function Product() {
     setInputText(event.target.value);
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    dispatch(asyncGetCategoriesThunk());
-    setInputText("");
-  }
+  // function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  //   event.preventDefault();
+  //   dispatch(asyncGetCategoriesThunk());
+  //   setInputText("");
+  // }
   return (
     <>
       <div className="product-search-container">
-        <form onSubmit={handleSubmit}>
+        <form >
           <input
             onChange={handleSearchInput}
             value={inputText}
@@ -110,7 +110,6 @@ function Product() {
                 className="product_box"
               >
                 <span style={{ marginTop: "10px" }}>{item.title}</span>
-
 
                 <Image
                   src={item.image}
@@ -161,7 +160,9 @@ function Product() {
           })}
         </div>
       ) : (
-        <h1 className="loading">Loading...</h1>
+        <div style={{width:"100%", display:"flex", justifyContent:"center"}}>
+          <MoonLoader color="black" size={80} />
+        </div>
       )}
 
       <div className="pagination_container">

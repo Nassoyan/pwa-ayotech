@@ -3,8 +3,10 @@ import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import { RootState } from "@/redux/features/store";
 import { asyncEmptyCartThunk } from "@/redux/slices/cart/emptyAllItems";
 import { asyncGetCartThunk } from "@/redux/slices/cart/getCart";
-import Link from "next/link";
+import { loadingSelector } from "@/redux/slices/cart/getCart";
 import { useEffect, useState } from "react";
+import { MoonLoader } from "react-spinners";
+
 
 function AddToCart() {
   const [state, setState] = useState([]); //making copy of fetched data
@@ -12,8 +14,8 @@ function AddToCart() {
   const dispatch = useAppDispatch();
   const token = useAppSelector((state: RootState) => state.getCart.cart_token);
 
-  const data = useAppSelector((state: RootState) => state.getCart.data?.items); //getting data from redux and passing to the state
-
+  const data = useAppSelector((state: any) => state.getCart.data?.items); //getting data from redux and passing to the state
+  const loading = useAppSelector(loadingSelector);
   useEffect(() => {
     setState(data);
   }, [data]);
@@ -29,6 +31,8 @@ function AddToCart() {
 
   function deleteItem(id: number) {
     setState((prev: any) => {
+      console.log(prev);
+      
       return prev.filter((t: any) => t.id !== id);
     });
   }
@@ -55,17 +59,26 @@ function AddToCart() {
         <span className="empty_all_items" onClick={handleEmptyCartClick}>
           Empty all items
         </span>
-        <div className="added_products_container">
-          {state?.map((item: any) => {
-            return (
-              <CartMappedData
-                deleteItem={(item: any) => deleteItem(item)}
-                key={item.id}
-                product={item}
-              />
-            );
-          })}
-        </div>
+        {loading ? (
+          <div className="added_products_container">
+            {state?.map((item: any) => {
+              return (
+                <CartMappedData
+                  id={item.id}
+                  key={item.id}
+                  product={item}
+                  deleteItem={deleteItem(item.id)}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            <MoonLoader color="black" size={80} />
+          </div>
+        )}
       </div>
     </div>
   );

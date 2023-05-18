@@ -12,10 +12,12 @@ export interface Item {
 export interface ItemProps {
   data?: Item[]
   cart_token?:any
+  isLoading?:boolean
 }
 
 const initialState:ItemProps = {
-  data:[]
+  data:[],
+  isLoading:false
 }
 
 export const asyncGetCartThunk = createAsyncThunk("addToCart", async (params:ItemProps, {rejectWithValue}) => {
@@ -38,6 +40,7 @@ export const getCartSlice = createSlice({
       builder.addCase(asyncGetCartThunk.fulfilled, (state:any, action:PayloadAction<any>) => {
         state.cart_token = localStorage.getItem("cart_token")
         state.data = action.payload.cartinfo
+        state.isLoading = true
       })
   }
 });
@@ -45,3 +48,4 @@ export const getCartSlice = createSlice({
 export default getCartSlice.reducer;
 export const tokenSelector = ((state:RootState) => state.getCart.cart_token)
 export const dataSelector = ((state:RootState) => state.getCart.data)
+export const loadingSelector = ((state:RootState) => state.getCart.isLoading)

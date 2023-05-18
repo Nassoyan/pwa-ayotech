@@ -11,10 +11,15 @@ export interface Posts {
 
 export interface PostProps {
   data: Posts[];
+  isloading?:boolean
+
+
 }
 
 const initialState = {
   data: [],
+  isloading:false
+
 } as PostProps;
 
 export const asyncPostsThunk = createAsyncThunk("api/posts", async () => {
@@ -33,6 +38,7 @@ const postSlice = createSlice({
       asyncPostsThunk.fulfilled,
       (state: PostProps, action: PayloadAction<any>) => {
         state.data = action.payload;
+        state.isloading = true
       }
     );
   },
@@ -41,3 +47,4 @@ const postSlice = createSlice({
 export default postSlice.reducer;
 
 export const postSelector = (state: RootState) => state.posts.data;
+export const loadingSelector = (state: RootState) => state.posts.isloading;
