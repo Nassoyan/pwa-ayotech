@@ -2,6 +2,10 @@ import { ReactNode, useEffect } from 'react';
 import Footer from './homepageComponents/Footer'
 import Header from './homepageComponents/navbar_header/Header'
 import { useRouter } from 'next/router';
+import ScrollPopUp from './ScrollPopUp';
+import { useAppSelector } from '@/redux/features/hooks';
+import { RootState } from '@/redux/features/store';
+import Cookies from 'js-cookie';
 
 type Props = {
   children: ReactNode;
@@ -9,7 +13,10 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   const router = useRouter()
-
+  const barearToken = Cookies.get("authorized");
+  
+  const data = useAppSelector((state: RootState) => state.getCart.data?.items);
+  
   // useEffect(() => {
   //   const bodyHeight = document.body.scrollHeight
   //   const windowHeight = window.innerHeight
@@ -21,6 +28,16 @@ export default function Layout({ children }: Props) {
   //     footer?.classList.remove("layout_footer")
   //   }
   // }, [children])
+
+  function ScrollPopup() {
+    switch (router.pathname) {
+      case "/cart":
+      case "/product":
+        return false
+      default:
+        return <ScrollPopUp/>;
+    }
+  }
 
   switch (router.pathname) {
     case '/register':
@@ -35,6 +52,7 @@ export default function Layout({ children }: Props) {
           <Header />
           <main>{children}</main>
           <Footer />
+          {data?.length && barearToken && ScrollPopup()}
         </>
       )
   }

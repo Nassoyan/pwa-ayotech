@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import AddToCartSVG from "@/public/svg/addToCart";
 import { quantitySelector } from "@/redux/slices/cart/addToCartSlice";
 import NavBar from "./NavBar";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { asyncGetCartThunk } from "@/redux/slices/cart/getCart";
 
 function Header() {
@@ -15,7 +15,8 @@ function Header() {
     dispatch(
       asyncGetCartThunk({ cart_token: localStorage.getItem("cart_token") })
     );
-  });
+  }, []);
+
 
   return (
     <div className="header_wrapper">

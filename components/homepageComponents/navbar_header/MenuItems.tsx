@@ -8,7 +8,7 @@ export default function MenuItems({ items, depthLevel }: any) {
   useEffect(() => {
     const handler = (event:any) => {
      if (dropdown && ref.current && !ref.current.contains(event.target)) {
-      setDropdown(false);s
+      setDropdown(false);
      }
     };
     document.addEventListener("mousedown", handler);

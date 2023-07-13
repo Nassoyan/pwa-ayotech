@@ -19,6 +19,7 @@ import "@/styles/productId.scss";
 import "@/styles/crosSellers.scss";
 import "@/styles/paginate.scss";
 import "@/styles/blogPost.scss"
+import "@/styles/scrollPopUp.scss"
 
 
 

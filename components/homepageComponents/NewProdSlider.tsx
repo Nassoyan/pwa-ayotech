@@ -14,11 +14,15 @@ import {
   getProductSelector,
   getProductThunk,
 } from "@/redux/slices/wishlist/getProductSlice";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 function NewProdSlider() {
   const dispatch = useAppDispatch();
   const data: Product[] = useAppSelector(getProductSelector);
   let loading = useAppSelector(loadingSelector);
+  const authorization = Cookies.get("authorized");
+  const router = useRouter()
   
 
   useEffect(() => {
@@ -115,7 +119,7 @@ function NewProdSlider() {
                 </div>
                 <span
                   onClick={() => {
-                    dispatch(
+                   !authorization && dispatch(
                       addProductToWishlistThunk({
                         product_id: el.id,
                       })
@@ -126,15 +130,19 @@ function NewProdSlider() {
                 </span>
                 <div
                   onClick={() => {
-                    dispatch(
-                      asyncAddToCartThunk({
-                        product_id: el.id,
-                        quantity: 1,
-                        cart_token: localStorage
-                          .getItem("cart_token")
-                          ?.toString(),
-                      })
-                    );
+                    if(authorization == undefined) {
+                      router.push("/register")
+                    } else {
+                      dispatch(
+                        asyncAddToCartThunk({
+                          product_id: el.id,
+                          quantity: 1,
+                          cart_token: localStorage
+                            .getItem("cart_token")
+                            ?.toString(),
+                        })
+                      );
+                    }
                   }}
                   className="plus-sign"
                 >

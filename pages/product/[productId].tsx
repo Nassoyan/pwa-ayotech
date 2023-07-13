@@ -21,6 +21,8 @@ function ProductReview() {
   const router = useRouter();
   const productId = router.query.productId;
 
+  
+
   const [comments, setComments] = useState<Comment[]>([]);
   const [text, setText] = useState("");
   const [count, setCount] = useState(0);

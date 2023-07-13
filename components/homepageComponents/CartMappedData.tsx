@@ -5,12 +5,26 @@ import { asyncDeleteCartThunk } from "@/redux/slices/cart/deleteCart";
 import { asyncEditCartThunk } from "@/redux/slices/cart/editCartItems";
 import { asyncGetCartThunk } from "@/redux/slices/cart/getCart";
 import Image from "next/legacy/image";
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+
+interface Product {
+  images: string[];
+  product: number;
+  quantity: number;
+  id?: number;
+}
+
+type NewProductItemProps = {
+  product: Product;
+  deleteItem():void
+};
 
 export default function CartMappedData(
-  props: any,
+  props: NewProductItemProps,
+  { deleteItem }: any
 ) {
-  const product = props.product;
+  const product: Product = props.product;
+
   const quantity = product.quantity;
   const [count, setCount] = useState(quantity);
   const token = localStorage.getItem("cart_token");
@@ -30,7 +44,6 @@ export default function CartMappedData(
 
   return (
     <div className="getCart_each_container" key={product.id}>
-      <span>{product.name}</span>
       <Image
         src={product.images[0]}
         layout="intrinsic"
@@ -42,7 +55,6 @@ export default function CartMappedData(
       />
       <span
         onClick={() => {
-          props.deleteItem(props.id)
           dispatch(
             asyncDeleteCartThunk({
               item_id: Number(product.id),
@@ -55,6 +67,7 @@ export default function CartMappedData(
               })
             )
           );
+          props.deleteItem
         }}
       >
         Delete

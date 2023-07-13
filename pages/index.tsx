@@ -4,7 +4,7 @@ import Description from '@/components/homepageComponents/Description'
 import Footer from '@/components/homepageComponents/Footer'
 import Header from '@/components/homepageComponents/navbar_header/Header'
 import NewProdSlider from '@/components/homepageComponents/NewProdSlider'
-import TopSlider from '@/components/homepageComponents/TopSlider'
+// import TopSlider from '@/components/homepageComponents/TopSlider'
 import Head from 'next/head'
 
 
@@ -17,7 +17,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <TopSlider/>
+      {/* <TopSlider/> */}
       <BlogPost/>
       <NewProdSlider/>
       <Description/>
